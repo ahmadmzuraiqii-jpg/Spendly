@@ -10,9 +10,6 @@ import { PageHeader } from "@/components/page-header";
 import { QuickAddBar } from "@/components/quick-add/quick-add-bar";
 import { todayLocalDateString } from "@/lib/dates";
 
-/** This page blocks on live SQLite data and the current date by design. */
-export const instant = false;
-
 export default async function DashboardPage() {
   await connection();
   const userId = await getUserId();

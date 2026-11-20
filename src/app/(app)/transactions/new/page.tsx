@@ -14,9 +14,6 @@ import {
 import { todayLocalDateString } from "@/lib/dates";
 import { isTransactionType } from "@/lib/validation";
 
-/** This page blocks on live SQLite data, `searchParams` and the current date. */
-export const instant = false;
-
 export default async function NewTransactionPage({
   searchParams,
 }: {

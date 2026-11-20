@@ -6,9 +6,6 @@ import { AnalyticsView } from "@/components/analytics/analytics-view";
 import { PageHeader } from "@/components/page-header";
 import { todayLocalDateString } from "@/lib/dates";
 
-/** This page blocks on live SQLite data and the current date by design. */
-export const instant = false;
-
 export default async function AnalyticsPage() {
   await connection();
   const userId = await getUserId();

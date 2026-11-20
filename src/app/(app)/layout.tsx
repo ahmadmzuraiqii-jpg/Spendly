@@ -6,15 +6,6 @@ import { getUserId } from "@/lib/auth";
 import { AppShell } from "@/components/app-shell";
 
 /**
- * Every app route reads the local SQLite database (and often `params` or
- * `searchParams`) at request time, so waiting for that work before responding
- * is the correct behavior for this local-first app. Opting the segment out of
- * static-shell/instant-navigation validation lets the build accept these
- * blocking routes instead of requiring Suspense skeletons or cached reads.
- */
-export const instant = false;
-
-/**
  * Applies the saved `settings.theme` before this segment paints and refreshes
  * the localStorage mirror. The root layout's pre-paint script is
  * localStorage-first so the `/design` page can stay static; this script makes

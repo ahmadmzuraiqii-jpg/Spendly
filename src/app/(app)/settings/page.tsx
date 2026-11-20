@@ -5,9 +5,6 @@ import { getUserId } from "@/lib/auth";
 import { PageHeader } from "@/components/page-header";
 import { SettingsView } from "@/components/settings/settings-view";
 
-/** This page blocks on live SQLite data and the current date by design. */
-export const instant = false;
-
 export default async function SettingsPage() {
   await connection();
   const userId = await getUserId();

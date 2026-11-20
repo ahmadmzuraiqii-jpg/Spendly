@@ -9,9 +9,6 @@ import {
 import { PageHeader } from "@/components/page-header";
 import { Alert } from "@/components/ui/alert";
 
-/** This page blocks on live SQLite data so category usage counts stay fresh. */
-export const instant = false;
-
 export default async function CategoriesPage({
   searchParams,
 }: {

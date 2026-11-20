@@ -12,9 +12,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-/** This page blocks on live SQLite data and `params`. */
-export const instant = false;
-
 export default async function EditCategoryPage({
   params,
 }: {

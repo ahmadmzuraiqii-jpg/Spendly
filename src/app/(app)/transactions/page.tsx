@@ -14,9 +14,6 @@ import {
   TransactionListEmpty,
 } from "@/components/transaction-list";
 
-/** This page blocks on live SQLite data and `searchParams` by design. */
-export const instant = false;
-
 export default async function TransactionsPage({
   searchParams,
 }: {

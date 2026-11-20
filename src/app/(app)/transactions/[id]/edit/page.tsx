@@ -14,9 +14,6 @@ import {
 import { formatMinorForInput } from "@/lib/money";
 import { todayLocalDateString } from "@/lib/dates";
 
-/** This page blocks on live SQLite data, `params` and the current date. */
-export const instant = false;
-
 export default async function EditTransactionPage({
   params,
 }: {

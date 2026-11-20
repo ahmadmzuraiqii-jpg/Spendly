@@ -4,13 +4,6 @@ import { Wallet } from "lucide-react";
 import { isAuthenticated } from "@/lib/auth";
 import { LoginForm } from "@/components/login/login-form";
 
-/**
- * This page reads the session cookie, so it blocks on the request like the
- * rest of the app routes (`instant = false` opts it out of the static shell
- * under Cache Components).
- */
-export const instant = false;
-
 export const metadata: Metadata = {
   title: "Sign in",
 };
