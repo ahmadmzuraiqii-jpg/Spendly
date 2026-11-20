@@ -21,14 +21,22 @@ export async function loginAction(
     return { errors: { password: "Enter your password." } };
   }
 
-  const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
+  try {
+    const supabase = await createClient();
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
-  if (error) {
-    return { formError: error.message };
+    if (error) {
+      return { formError: error.message };
+    }
+  } catch (err) {
+    console.error("Login error:", err);
+    return {
+      formError:
+        err instanceof Error ? err.message : "Authentication service error.",
+    };
   }
 
   redirect("/");
@@ -51,14 +59,22 @@ export async function signUpAction(
     return { errors: { password: "Enter your password." } };
   }
 
-  const supabase = await createClient();
-  const { error } = await supabase.auth.signUp({
-    email,
-    password,
-  });
+  try {
+    const supabase = await createClient();
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
 
-  if (error) {
-    return { formError: error.message };
+    if (error) {
+      return { formError: error.message };
+    }
+  } catch (err) {
+    console.error("Sign up error:", err);
+    return {
+      formError:
+        err instanceof Error ? err.message : "Authentication service error.",
+    };
   }
 
   // Supabase might require email confirmation depending on project settings.
@@ -71,7 +87,11 @@ export async function signUpAction(
  * Clears the session and returns to the login screen.
  */
 export async function logoutAction(): Promise<void> {
-  const supabase = await createClient();
-  await supabase.auth.signOut();
+  try {
+    const supabase = await createClient();
+    await supabase.auth.signOut();
+  } catch (err) {
+    console.error("Logout error:", err);
+  }
   redirect("/login");
 }

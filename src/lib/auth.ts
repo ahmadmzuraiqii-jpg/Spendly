@@ -20,9 +20,22 @@ export async function isAuthenticated(): Promise<boolean> {
  * Verifies if there is an active Supabase session and returns the user ID.
  */
 export async function getUserId(): Promise<string | null> {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  return user?.id ?? null;
+  try {
+    const supabase = await createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    return user?.id ?? null;
+  } catch (err) {
+    if (
+      err &&
+      typeof err === "object" &&
+      "digest" in err &&
+      err.digest === "DYNAMIC_SERVER_USAGE"
+    ) {
+      throw err;
+    }
+    console.error("Auth check error:", err);
+    return null;
+  }
 }

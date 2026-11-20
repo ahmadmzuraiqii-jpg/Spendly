@@ -67,26 +67,31 @@ CREATE POLICY "Settings are personal" ON settings
   WITH CHECK (auth.uid() = user_id);
 
 -- Create trigger for new users
-CREATE OR REPLACE FUNCTION on_auth_user_created()
-RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION public.on_auth_user_created()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SECURITY DEFINER SET search_path = public
+AS $$
 BEGIN
   -- Insert default settings
-  INSERT INTO settings (user_id)
-  VALUES (NEW.id);
+  INSERT INTO public.settings (user_id, currency, theme)
+  VALUES (NEW.id, 'JOD', 'dark');
 
   -- Insert default categories
-  INSERT INTO categories (user_id, name, type, is_default)
+  INSERT INTO public.categories (user_id, name, type, color, is_default)
   VALUES
-    (NEW.id, 'Salary', 'income', TRUE),
-    (NEW.id, 'Freelance', 'income', TRUE),
-    (NEW.id, 'Food', 'expense', TRUE),
-    (NEW.id, 'Transport', 'expense', TRUE),
-    (NEW.id, 'Utilities', 'expense', TRUE);
+    (NEW.id, 'Salary', 'income', '#3F9D6B', TRUE),
+    (NEW.id, 'Freelance', 'income', '#2A9D8F', TRUE),
+    (NEW.id, 'Food', 'expense', '#E07A5F', TRUE),
+    (NEW.id, 'Transport', 'expense', '#4C7DF0', TRUE),
+    (NEW.id, 'Utilities', 'expense', '#E39B2E', TRUE);
 
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
+
+DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 
 CREATE TRIGGER on_auth_user_created
 AFTER INSERT ON auth.users
-FOR EACH ROW EXECUTE FUNCTION on_auth_user_created();
+FOR EACH ROW EXECUTE FUNCTION public.on_auth_user_created();
