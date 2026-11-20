@@ -1,0 +1,609 @@
+# SPENDLY
+## Product Requirements Document (PRD)
+**Version:** 1.0  
+**Project type:** Personal Finance / Expense Tracking Web Application  
+**Purpose:** First project in the AI Coding Platform Experiment
+
+---
+
+# 1. Product Vision
+
+Spendly is a modern, simple and visually polished personal finance application that allows an individual to track income, monitor expenses, understand spending habits and manage their money.
+
+The main objective is to make it easy for users to understand:
+
+- How much money they have received.
+- How much money they have spent.
+- Where their money goes.
+- How their spending changes over time.
+- Whether they are spending more or less than previous months.
+
+The application should turn financial transactions into useful, understandable visual information.
+
+**Product philosophy:** Simplicity, clarity, speed and excellent user experience.
+
+# 2. Target User
+
+The initial version is designed for one individual managing their personal finances.
+
+There will be:
+- One local user.
+- No registration.
+- No login.
+- No multiple-user functionality.
+- No social or collaborative features.
+
+The application should be usable by someone without financial or accounting knowledge.
+
+# 3. Platform and Scope
+
+Build a responsive web application.
+
+It should work on:
+- Desktop computers.
+- Tablets.
+- Mobile phones.
+
+For this experiment, the application should run locally on the user's computer.
+
+The database must persist information after the application is closed or restarted.
+
+Preferred approach: a lightweight local database such as SQLite, subject to the coding agent's technical recommendation.
+
+Do not introduce unnecessary cloud infrastructure.
+
+# 4. Application Structure
+
+The application should have five main sections:
+
+1. Dashboard
+2. Transactions
+3. Categories
+4. Analytics
+5. Settings
+
+Use a clean sidebar navigation on desktop and a mobile-friendly navigation system on smaller screens.
+
+---
+
+# 5. Feature Specifications
+
+## A. Dashboard
+
+The dashboard is the main screen and should provide an immediate overview of the user's financial situation.
+
+### Financial summary cards
+
+Display four cards:
+
+**1. Total Income**
+- Total income during the selected month.
+- Comparison with the previous month.
+- Percentage increase or decrease.
+
+**2. Total Expenses**
+- Total expenses during the selected month.
+- Comparison with the previous month.
+- Percentage increase or decrease.
+
+**3. Net Balance**
+- Income minus expenses during the selected month.
+- Positive or negative indication.
+
+**4. Total Transactions**
+- Number of transactions during the selected month.
+
+### Dashboard charts
+
+**Income vs Expenses**
+- Bar or line chart.
+- Display income and expenses over the last six months.
+- Allow switching between monthly and yearly views where applicable.
+
+**Expense Breakdown**
+- Doughnut chart.
+- Show how expenses are distributed among categories.
+- Display category name, amount and percentage.
+- Allow selecting a category to view its transactions.
+
+**Recent Transactions**
+- Display the latest five to ten transactions.
+- Show description, category, date, amount and transaction type.
+- Provide a link to view all transactions.
+
+### Quick Actions
+
+Include prominent buttons:
+- Add Expense
+- Add Income
+- View Transactions
+
+### Date selection
+
+Allow the dashboard to display:
+- This month.
+- Last month.
+- Last 3 months.
+- This year.
+- Custom date range.
+
+All summary cards and charts should update when the date selection changes.
+
+---
+
+## B. Transactions
+
+This is the main data-entry and management section.
+
+### Transaction types
+
+Support two types:
+
+1. Income
+2. Expense
+
+### Add Transaction
+
+When the user clicks Add Transaction, display a clean form or modal.
+
+Required fields:
+
+| Field | Description |
+|---|---|
+| Amount | Transaction value |
+| Type | Income or expense |
+| Category | Select an existing category |
+| Date | Transaction date |
+| Description | Short transaction description |
+
+Optional field:
+- Merchant or source.
+
+### Validation
+
+- Amount must be greater than zero.
+- A transaction must have a valid date.
+- A category must be selected.
+- Description should have a reasonable character limit.
+- Prevent invalid or incomplete submissions.
+- Display understandable validation messages.
+
+### Transaction management
+
+Users must be able to:
+- Add transactions.
+- Edit existing transactions.
+- Delete transactions.
+- View transaction details.
+- Search transactions.
+- Filter transactions.
+- Sort transactions.
+
+### Transaction list
+
+Display the following columns:
+
+| Column | Content |
+|---|---|
+| Description | Transaction description |
+| Category | Assigned category |
+| Date | Transaction date |
+| Type | Income or expense |
+| Amount | Transaction amount |
+| Actions | Edit and delete |
+
+### Search and filtering
+
+Allow filtering by:
+- Income or expense.
+- Category.
+- Date range.
+- Minimum and maximum amount.
+
+Allow keyword search by description or merchant.
+
+Allow sorting by:
+- Newest first.
+- Oldest first.
+- Highest amount.
+- Lowest amount.
+
+Pagination or a simple load-more approach can be used if necessary.
+
+---
+
+## C. Categories
+
+Categories help organize transactions.
+
+### Default expense categories
+
+- Food & Dining
+- Transportation
+- Shopping
+- Housing
+- Bills & Utilities
+- Health
+- Education
+- Entertainment
+- Travel
+- Personal Care
+- Subscriptions
+- Other
+
+### Default income categories
+
+- Salary
+- Freelance
+- Business
+- Investments
+- Gifts
+- Other Income
+
+### Category management
+
+Users should be able to:
+- Create a category.
+- Rename a category.
+- Change its color.
+- Select an icon.
+- Delete a category.
+
+Important rules:
+- A category currently used by transactions should not be deleted without warning.
+- If a category is deleted, the user must be offered a way to reassign its transactions or prevent deletion.
+- Categories must be separated by income and expense types.
+
+Each category should have a consistent color across the application and charts.
+
+---
+
+## D. Analytics
+
+This section provides a deeper understanding of financial activity.
+
+### Monthly overview
+
+Display:
+- Total income.
+- Total expenses.
+- Net balance.
+- Total number of transactions.
+
+### Spending trends
+
+Show:
+- Monthly expense trends.
+- Monthly income trends.
+- Income versus expenses.
+- Changes compared with previous periods.
+
+### Category analysis
+
+Show:
+- Highest spending category.
+- Lowest spending category.
+- Total spending per category.
+- Percentage of total expenses represented by each category.
+
+### Insights
+
+Generate simple rule-based observations using transaction data.
+
+Examples:
+- "Your spending increased by 15% compared with last month."
+- "Food & Dining is your largest expense category."
+- "You spent 35 JOD less on transportation this month."
+
+These should be calculated from actual transaction data, not generated by AI.
+
+Do not introduce an AI API into this project.
+
+---
+
+## E. Settings
+
+Provide a simple settings page.
+
+### Currency
+
+- Default currency: JOD.
+- Allow the user to change the display currency.
+- Support common currencies such as USD, EUR, GBP and SAR.
+- Do not implement live currency conversion.
+- Changing the display currency must not silently convert or alter stored transaction amounts.
+
+### Appearance
+
+- Light mode.
+- Dark mode.
+- Save the user's preference.
+
+### Data management
+
+Allow:
+- Exporting transactions to CSV.
+- Viewing the number of stored transactions.
+- Clearing all application data after an explicit confirmation.
+
+Do not add cloud synchronization or online backups in the first version.
+
+---
+
+# 6. Design and User Experience
+
+The design is extremely important.
+
+Spendly should look like a polished modern SaaS finance dashboard.
+
+### Design direction
+
+- Minimalist.
+- Modern.
+- Professional.
+- Clean typography.
+- Good spacing.
+- Subtle shadows.
+- Rounded cards.
+- Clear visual hierarchy.
+- Consistent iconography.
+- Smooth but restrained transitions.
+
+Avoid:
+- Overcrowded dashboards.
+- Excessive gradients.
+- Unnecessary animations.
+- Too many colors.
+- Cluttered tables.
+- Generic unstyled components.
+
+### Color direction
+
+Suggested palette:
+
+- Primary: Deep navy.
+- Accent: Teal.
+- Background: Very light neutral gray.
+- Cards: White.
+- Income: Green.
+- Expenses: Red or muted coral.
+- Supporting text: Gray.
+
+Colors must maintain sufficient contrast and readability.
+
+### Typography
+
+Use a clean modern font such as Inter.
+
+### Responsive behavior
+
+Desktop:
+- Sidebar navigation.
+- Multi-column dashboard.
+- Full transaction table.
+
+Mobile:
+- Compact navigation.
+- Stacked dashboard cards.
+- Responsive charts.
+- Transaction cards instead of forcing a wide table.
+- Forms that are comfortable to use on a phone.
+
+### Interaction quality
+
+- Loading states where appropriate.
+- Empty states when there are no transactions.
+- Confirmation before destructive actions.
+- Success and error notifications.
+- Consistent button behavior.
+- No dead buttons or non-functional controls.
+
+---
+
+# 7. Data Model
+
+The coding agent should propose and implement a simple, maintainable database structure.
+
+Suggested entities:
+
+### Transaction
+
+- id
+- amount
+- type
+- category_id
+- description
+- merchant
+- transaction_date
+- created_at
+- updated_at
+
+### Category
+
+- id
+- name
+- type
+- color
+- icon
+- created_at
+
+### Settings
+
+- id
+- currency
+- theme
+- created_at
+- updated_at
+
+Use appropriate database constraints and indexes.
+
+Financial calculations must use reliable decimal or integer-based monetary representation rather than unsafe floating-point arithmetic.
+
+Store dates consistently and avoid timezone-related date shifts.
+
+---
+
+# 8. Business Logic and Calculation Rules
+
+These rules must be consistent throughout the application.
+
+**Total Income**
+= Sum of all income transactions in the selected period.
+
+**Total Expenses**
+= Sum of all expense transactions in the selected period.
+
+**Net Balance**
+= Total Income - Total Expenses.
+
+**Expense Category Percentage**
+= Category Expenses / Total Expenses × 100.
+
+**Monthly Change**
+= (Current Period - Previous Period) / Previous Period × 100.
+
+If the previous period has zero value, handle the comparison without dividing by zero. Display an appropriate message instead.
+
+When a transaction is edited or deleted, all relevant dashboard cards, charts and analytics must update correctly.
+
+Use consistent date boundaries for monthly and custom-period reports.
+
+---
+
+# 9. Non-Functional Requirements
+
+### Performance
+- Fast initial loading.
+- Responsive interactions.
+- No unnecessary API calls.
+- Efficient database queries.
+
+### Reliability
+- Data must persist after restarting the application.
+- Editing and deleting transactions must not corrupt financial summaries.
+- Prevent duplicate submissions.
+- Handle database errors gracefully.
+
+### Security
+- No exposed API keys or secrets.
+- No unnecessary collection of personal information.
+- Local data should not be publicly accessible.
+- Protect against accidental data deletion.
+- Do not commit secret files to GitHub.
+
+### Maintainability
+- Clear project structure.
+- Reusable UI components.
+- Separated application logic and presentation.
+- Consistent naming conventions.
+- Basic automated tests for important calculations and transaction operations.
+
+---
+
+# 10. Explicitly Excluded From Version 1
+
+To prevent scope creep, do not implement:
+
+- User registration or authentication.
+- Multiple users.
+- Bank account connections.
+- Automatic transaction imports.
+- Credit/debit card integrations.
+- Payment processing.
+- Cryptocurrency tracking.
+- Investment portfolio management.
+- AI financial advice.
+- Budget alerts.
+- Recurring transactions.
+- Cloud synchronization.
+- Multi-currency conversion.
+- Complex financial forecasting.
+
+These may be considered in a future version.
+
+---
+
+# 11. Acceptance Criteria
+
+The application is considered complete only when:
+
+1. The application starts successfully.
+2. The user can add income and expense transactions.
+3. Transactions remain saved after restarting the application.
+4. Transactions can be edited and deleted.
+5. Categories can be created and managed.
+6. Dashboard totals are mathematically correct.
+7. Monthly comparisons work correctly.
+8. Charts represent actual transaction data.
+9. Filters and search return correct results.
+10. Currency settings work as specified.
+11. Light and dark modes work.
+12. CSV export produces valid transaction data.
+13. The application works on desktop and mobile.
+14. Empty states and error states are handled.
+15. No visible buttons or controls are non-functional.
+16. Important business logic has automated tests.
+17. No secrets are committed to the repository.
+
+---
+
+# 12. Development Philosophy
+
+Build the application in small, verifiable phases.
+
+Suggested phases:
+
+**Phase 1:** Project setup, database and design system.
+
+**Phase 2:** Categories and transaction management.
+
+**Phase 3:** Dashboard and financial calculations.
+
+**Phase 4:** Analytics, charts and filters.
+
+**Phase 5:** Settings, CSV export and responsive refinement.
+
+**Phase 6:** Testing, bug fixing and final verification.
+
+Do not build everything in one massive operation.
+
+After each phase:
+- Run the application.
+- Test completed features.
+- Check for regressions.
+- Report completed work.
+- Identify remaining issues.
+
+Do not claim a feature is complete unless it has actually been tested.
+
+# 13. AI Coding Experiment Requirements
+
+This is not just an application-building exercise. Spendly is the first benchmark for comparing AI coding platforms.
+
+Record:
+
+- Time spent.
+- Model used.
+- Model/API provider.
+- Input and output token usage, if available.
+- Total cost.
+- Number of coding-agent interactions.
+- Number of errors.
+- Number of human interventions.
+- Requirements completed.
+- Bugs discovered during testing.
+- Final product quality.
+
+Do not artificially make the project easier for one platform than another.
+
+The objective is to discover which coding agent can turn a clear product specification into a working, polished application with the least cost and supervision.
+
+---
+
+# Final Product Goal
+
+Deliver a functional, polished and reliable personal expense tracker that feels like a real product.
+
+Prioritize working functionality, correctness and user experience over unnecessary complexity.
+
+Keep the implementation simple enough to complete quickly, but rigorous enough to serve as a meaningful AI coding-agent benchmark.

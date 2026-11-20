@@ -1,0 +1,113 @@
+import {
+  Baby,
+  Banknote,
+  Bike,
+  BookOpen,
+  Briefcase,
+  Bus,
+  Building2,
+  Car,
+  CircleEllipsis,
+  CirclePlus,
+  Clapperboard,
+  Coffee,
+  CreditCard,
+  Dog,
+  Dumbbell,
+  Film,
+  Fuel,
+  Gift,
+  GraduationCap,
+  HeartPulse,
+  House,
+  Laptop,
+  Landmark,
+  Music,
+  Package,
+  Pill,
+  PiggyBank,
+  Pizza,
+  Plane,
+  ReceiptText,
+  RefreshCcw,
+  Salad,
+  Shirt,
+  ShoppingBag,
+  Smartphone,
+  Sparkles,
+  Stethoscope,
+  Store,
+  Ticket,
+  Train,
+  TrendingUp,
+  Truck,
+  Utensils,
+  Wallet,
+  Wrench,
+  type LucideIcon,
+} from "lucide-react";
+
+/**
+ * Every icon a category can use. The string slug is what is stored in SQLite;
+ * this map is the single place that turns a slug back into a component.
+ */
+export const CATEGORY_ICONS = {
+  "utensils": Utensils,
+  "salad": Salad,
+  "pizza": Pizza,
+  "coffee": Coffee,
+  "car": Car,
+  "bus": Bus,
+  "train": Train,
+  "truck": Truck,
+  "bike": Bike,
+  "fuel": Fuel,
+  "plane": Plane,
+  "house": House,
+  "store": Store,
+  "shopping-bag": ShoppingBag,
+  "shirt": Shirt,
+  "smartphone": Smartphone,
+  "laptop": Laptop,
+  "credit-card": CreditCard,
+  "banknote": Banknote,
+  "wallet": Wallet,
+  "piggy-bank": PiggyBank,
+  "landmark": Landmark,
+  "receipt-text": ReceiptText,
+  "heart-pulse": HeartPulse,
+  "stethoscope": Stethoscope,
+  "pill": Pill,
+  "dumbbell": Dumbbell,
+  "graduation-cap": GraduationCap,
+  "book-open": BookOpen,
+  "clapperboard": Clapperboard,
+  "film": Film,
+  "music": Music,
+  "ticket": Ticket,
+  "sparkles": Sparkles,
+  "gift": Gift,
+  "baby": Baby,
+  "dog": Dog,
+  "package": Package,
+  "wrench": Wrench,
+  "briefcase": Briefcase,
+  "building-2": Building2,
+  "trending-up": TrendingUp,
+  "refresh-ccw": RefreshCcw,
+  "circle-ellipsis": CircleEllipsis,
+  "circle-plus": CirclePlus,
+} satisfies Record<string, LucideIcon>;
+
+export type CategoryIconSlug = keyof typeof CATEGORY_ICONS;
+
+export const CATEGORY_ICON_SLUGS = Object.keys(
+  CATEGORY_ICONS,
+) as CategoryIconSlug[];
+
+export function getCategoryIcon(slug: string): LucideIcon {
+  return (CATEGORY_ICONS[slug as CategoryIconSlug] ?? CircleEllipsis) as LucideIcon;
+}
+
+/** A curated default so new categories look deliberate. */
+export const DEFAULT_CATEGORY_ICON: CategoryIconSlug = "circle-ellipsis";
